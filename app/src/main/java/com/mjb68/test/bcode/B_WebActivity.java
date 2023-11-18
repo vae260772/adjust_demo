@@ -1,6 +1,6 @@
-package com.mjb68.test;
+package com.mjb68.test.bcode;
 
-import static com.mjb68.test.AdjustEventModel.app_url;
+import static com.mjb68.test.bcode.AdjustEventModel.app_url;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -30,13 +30,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mjb68.test.R;
+
 import java.net.URISyntaxException;
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
-public class MainActivity2 extends AppCompatActivity {
+public class B_WebActivity extends AppCompatActivity {
 
     private WebView webView;
     WebAppInterfaceAndroidJs webAppInterfaceAndroidJs;
@@ -76,7 +76,8 @@ public class MainActivity2 extends AppCompatActivity {
         settings.setAllowFileAccess(true);
         settings.setSupportMultipleWindows(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        WebViewReplaceUA.replaceUA(webView);
+        settings.setUserAgentString(settings.getUserAgentString().replaceAll("; wv", ""));
+        ///WebViewReplaceUA.replaceUA(webView);
         setWebChromeClient();
 
 
@@ -151,7 +152,9 @@ public class MainActivity2 extends AppCompatActivity {
                 settings.setAllowFileAccess(true);
                 settings.setSupportMultipleWindows(true);
                 settings.setJavaScriptCanOpenWindowsAutomatically(true);
-                WebViewReplaceUA.replaceUA(newWebView);
+                /// newWebView.addJavascriptInterface(webAppInterfaceAndroidJs, "android");
+
+                ////WebViewReplaceUA.replaceUA(newWebView);
 
                 newWebView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 newWebView.setWebChromeClient(new WebChromeClient() {
@@ -166,19 +169,6 @@ public class MainActivity2 extends AppCompatActivity {
                         }
                     }
                 });
-
-                // 修改ua
-                //    String ua = newWebView.getSettings().getUserAgentString();
-                //   boolean isWebviewUA = isWebviewUA(ua);
-//                if (isWebviewUA) {
-//                    String[] uas = mContext.getResources().getStringArray(R.array.userAgent);
-//                    if (uas != null && uas.length > 0) {
-//                        int index = CommonUtil.getRandom(0, uas.length - 1);
-//                        ua = uas[index];
-//                    }
-//                }
-//                String webview_ua = ua.replace("; wv", ""); //兼容web google登录
-//                newWebView.getSettings().setUserAgentString("");
                 // Enable Cookies
                 CookieManager cookieManager = CookieManager.getInstance();
                 cookieManager.setAcceptCookie(true);
@@ -198,14 +188,6 @@ public class MainActivity2 extends AppCompatActivity {
                     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                         String url = request.getUrl().toString().toLowerCase();
                         Log.d("aaa", "183 url=" + url);
-//                        if (url.contains("download")) {
-//                            newWebView.destroy();
-//                            if (builder != null) {
-//                                builder.dismiss();
-//                                builder = null;
-//                            }
-//                        }
-
                         if (url.contains("https://m.facebook.com/oauth/error")) {
                             return true;
                         }
@@ -243,7 +225,7 @@ public class MainActivity2 extends AppCompatActivity {
                     builder = null;
                 }
 
-                builder = new AlertDialog.Builder(MainActivity2.this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT).create();
+                builder = new AlertDialog.Builder(B_WebActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT).create();
 
 
                 builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -272,15 +254,5 @@ public class MainActivity2 extends AppCompatActivity {
                 return true;
             }
         });
-    }
-
-
-    public static boolean isWebviewUA(String useragent) {
-//        String useragent = System.getProperty("http.agent");
-        String[] rules = {"WebView", "Android.*(wv|\\.0\\.0\\.0)"};
-        String regex = "(" + String.join("|", rules) + ")";
-        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(useragent);
-        return matcher.find();
     }
 }

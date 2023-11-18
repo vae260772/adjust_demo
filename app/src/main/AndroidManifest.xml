@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivity2"
+            android:name=".bcode.B_WebActivity"
             android:exported="false">
 
         </activity>

@@ -1,9 +1,9 @@
 package com.mjb68.test;
 
-import static com.mjb68.test.AdjustEventModel.app_url;
-import static com.mjb68.test.AdjustEventModel.first_recharge_success;
-import static com.mjb68.test.AdjustEventModel.recharge_success;
-import static com.mjb68.test.AdjustEventModel.register_success;
+import static com.mjb68.test.bcode.AdjustEventModel.app_url;
+import static com.mjb68.test.bcode.AdjustEventModel.first_recharge_success;
+import static com.mjb68.test.bcode.AdjustEventModel.recharge_success;
+import static com.mjb68.test.bcode.AdjustEventModel.register_success;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.mjb68.test.bcode.AdjustEventModel;
+import com.mjb68.test.bcode.B_WebActivity;
+import com.mjb68.test.bcode.MyAdjustUtils;
 
 public class WelcomeActivity extends AppCompatActivity {
     String TAG = "WelcomeActivity";
@@ -66,7 +69,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         if (TextUtils.isEmpty(app_url)) {
                             startActivity(new Intent(WelcomeActivity.this, A_Activity.class));
                         } else {
-                            startActivity(new Intent(WelcomeActivity.this, MainActivity2.class));
+                            startActivity(new Intent(WelcomeActivity.this, B_WebActivity.class));
                         }
 
                         finish();

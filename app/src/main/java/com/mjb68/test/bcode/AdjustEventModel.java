@@ -1,7 +1,20 @@
-package com.mjb68.test;
+package com.mjb68.test.bcode;
 
 public class AdjustEventModel {
-
+    /**
+     * 明文字符串最好加密一下，aes、des
+     *  "key"、"url"......
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     */
     public static final String adjust_key = "key";
     public static final String app_url_key = "url";
 
@@ -13,9 +26,6 @@ public class AdjustEventModel {
     public static String register_success = "";
     public static String recharge_success = "";
     public static String first_recharge_success = "";
-
-
-    public static String adjust = "";
     public static String app_url = "";
 
 }

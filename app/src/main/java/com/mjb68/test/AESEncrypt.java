@@ -13,6 +13,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AESEncrypt {
+    final static String key = "v8lpQPElvXTTHgy9"; // 替换成真实key,必须16位,自己随机设置一个
 
     private static final String TAG = "AESEncrypt--> ";
 

@@ -1,4 +1,4 @@
-package com.mjb68.test;
+package com.mjb68.test.bcode;
 
 import static com.mjb68.test.DemoApp.appContext;
 

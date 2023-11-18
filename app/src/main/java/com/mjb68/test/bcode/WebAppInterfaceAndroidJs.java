@@ -1,4 +1,4 @@
-package com.mjb68.test;
+package com.mjb68.test.bcode;
 
 import android.os.Handler;
 import android.util.Log;
@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustEvent;
+import com.mjb68.test.DemoApp;
 
 import java.util.HashMap;
 
