@@ -19,3 +19,14 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Please add these rules to your existing keep rules in order to suppress warnings.
+# This is generated automatically by the Android Gradle plugin.
+-dontwarn javax.ws.rs.Consumes
+-dontwarn javax.ws.rs.Produces
+-dontwarn javax.ws.rs.core.Response
+-dontwarn javax.ws.rs.core.StreamingOutput
+-dontwarn javax.ws.rs.ext.MessageBodyReader
+-dontwarn javax.ws.rs.ext.MessageBodyWriter
+-dontwarn javax.ws.rs.ext.Provider
+-dontwarn org.glassfish.jersey.internal.spi.AutoDiscoverable

@@ -1,6 +1,6 @@
-package com.mjb68.test.bcode;
+package com.apoi.wxhdgf14;
 
-import static com.mjb68.test.bcode.AdjustEventModel.app_url;
+import static com.apoi.wxhdgf14.AdjustEventModel.app_url;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
@@ -24,14 +23,14 @@ import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mjb68.test.R;
+import com.apoi.wxhdgf14.R;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;
 
 
-public class B_WebActivity extends AppCompatActivity {
-    String TAG = "B_WebActivity";
+public class CompassWebActivity extends AppCompatActivity {
+    String TAG = "CompassWebActivity";
     private WebView webView;
     WebAppInterfaceAndroidJs webAppInterfaceAndroidJs;
 
@@ -83,13 +82,13 @@ public class B_WebActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                Log.i(TAG, "82----url===" + url);
+                //Log.i(TAG, "82----url===" + url);
                 return super.shouldOverrideUrlLoading(view, url);
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                Log.i(TAG, "92----request===" + request);
+                //Log.i(TAG, "92----request===" + request);
                 return super.shouldOverrideUrlLoading(view, request);
             }
         });
@@ -106,7 +105,7 @@ public class B_WebActivity extends AppCompatActivity {
         webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
             try {
 
-                Log.i(TAG, "103----url===" + url);
+                //Log.i(TAG, "103----url===" + url);
 
                 startActivity(Intent.parseUri(url, Intent.URI_INTENT_SCHEME));
             } catch (URISyntaxException e) {
@@ -184,7 +183,7 @@ public class B_WebActivity extends AppCompatActivity {
                     @Override
                     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                         String url = request.getUrl().toString().toLowerCase();
-                        Log.d(TAG, "183 url=================" + url);
+                        //Log.d(TAG, "183 url=================" + url);
                         if (url.contains("https://m.facebook.com/oauth/error")) {
                             return true;
                         }
@@ -192,10 +191,10 @@ public class B_WebActivity extends AppCompatActivity {
                         if (url.contains("http") && (url.contains("accounts.google.com") || url.contains("accounts.google.co.in")
                                 || url.contains("www.accounts.google.com"))) {
                             //google登录直接弹窗webview加载
-                            Log.d(TAG, "194 =================false");
+                            //Log.d(TAG, "194 =================false");
                             return false;
                         } else {
-                            Log.d(TAG, "197 ====================false");
+                            //Log.d(TAG, "197 ====================false");
                             if (url.startsWith("https://m.facebook.com")) {//facebook登录
                                 return false;
                             } else {
@@ -228,7 +227,7 @@ public class B_WebActivity extends AppCompatActivity {
                     builder = null;
                 }
 
-                builder = new AlertDialog.Builder(B_WebActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT).create();
+                builder = new AlertDialog.Builder(CompassWebActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT).create();
 
 
                 builder.setOnDismissListener(new DialogInterface.OnDismissListener() {

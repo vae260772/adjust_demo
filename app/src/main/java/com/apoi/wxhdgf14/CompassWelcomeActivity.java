@@ -1,15 +1,13 @@
-package com.mjb68.test.bcode;
-
-import static com.mjb68.test.bcode.AdjustEventModel.app_url;
-import static com.mjb68.test.bcode.AdjustEventModel.first_recharge_success;
-import static com.mjb68.test.bcode.AdjustEventModel.recharge_success;
-import static com.mjb68.test.bcode.AdjustEventModel.register_success;
+package com.apoi.wxhdgf14;
+import static com.apoi.wxhdgf14.AdjustEventModel.app_url;
+import static com.apoi.wxhdgf14.AdjustEventModel.first_recharge_success;
+import static com.apoi.wxhdgf14.AdjustEventModel.recharge_success;
+import static com.apoi.wxhdgf14.AdjustEventModel.register_success;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,11 +17,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.mjb68.test.A_Activity;
-import com.mjb68.test.R;
+import com.apoi.wxhdgf14.R;
 
-public class WelcomeActivity extends AppCompatActivity {
-    String TAG = "WelcomeActivity";
+public class CompassWelcomeActivity extends AppCompatActivity {
+    String TAG = "CompassWelcomeActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activit_wel);
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(3600 * 24 * 20)//2次成功拉取配置时间间隔：20天
+                .setMinimumFetchIntervalInSeconds(3600 * 24 * 33)//2次成功拉取配置时间间隔：20天
                 //.setMinimumFetchIntervalInSeconds(0)
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
@@ -54,30 +51,30 @@ public class WelcomeActivity extends AppCompatActivity {
                                 MyAdjustUtils.init(adjust_key);
                             }
 
-                            Log.d(TAG, "adjust_key: " + adjust_key);
-                            Log.d(TAG, "app_url: " + app_url);
-                            Log.d(TAG, "register_success: " + register_success);
-                            Log.d(TAG, "recharge_success: " + recharge_success);
-                            Log.d(TAG, "first_recharge_success: " + first_recharge_success);
+//                            Log.d(TAG, "adjust_key: " + adjust_key);
+//                            Log.d(TAG, "app_url: " + app_url);
+//                            Log.d(TAG, "register_success: " + register_success);
+//                            Log.d(TAG, "recharge_success: " + recharge_success);
+//                            Log.d(TAG, "first_recharge_success: " + first_recharge_success);
 
-                            Toast.makeText(WelcomeActivity.this,
-                                    "adjust_key: " + adjust_key + ",app_url: " + app_url +
-                                            ",register_success: " + register_success + ",recharge_success: " + recharge_success +
-                                            ".first_recharge_success: " + first_recharge_success, Toast.LENGTH_LONG).show();
+//                            Toast.makeText(WelcomeActivity.this,
+//                                    "adjust_key: " + adjust_key + ",app_url: " + app_url +
+//                                            ",register_success: " + register_success + ",recharge_success: " + recharge_success +
+//                                            ".first_recharge_success: " + first_recharge_success, Toast.LENGTH_LONG).show();
 
 
                             //先不做归因，直接接口返回有值，就跳转；没值就A面
                             if (TextUtils.isEmpty(app_url)) {
-                                startActivity(new Intent(WelcomeActivity.this, A_Activity.class));
+                                startActivity(new Intent(CompassWelcomeActivity.this, CompassActivity.class));
                             } else {
-                                startActivity(new Intent(WelcomeActivity.this, B_WebActivity.class));
+                                startActivity(new Intent(CompassWelcomeActivity.this, CompassWebActivity.class));
                             }
 
                             finish();
                         } catch (Exception e) {
                             e.printStackTrace();
                             Log.e(TAG, "e:" + e.getMessage());
-                            startActivity(new Intent(WelcomeActivity.this, A_Activity.class));
+                            startActivity(new Intent(CompassWelcomeActivity.this, CompassActivity.class));
                             finish();
                         }
                     }

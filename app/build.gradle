@@ -5,23 +5,51 @@ plugins {
 }
 
 android {
-    namespace 'com.mjb68.test'
+    namespace 'com.apoi.wxhdgf14'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.mjb68.test"
+        applicationId "com.apoi.wxhdgf14"
         minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+        debug {
+            storeFile file('1.jks')
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+
+        }
+
+        release {
+            storeFile file('1.jks')
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+
+        }
+    }
+
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

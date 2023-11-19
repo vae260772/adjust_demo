@@ -1,8 +1,6 @@
-package com.mjb68.test.bcode;
+package com.apoi.wxhdgf14;
 
-import static com.mjb68.test.DemoApp.appContext;
-
-import android.util.Log;
+import static com.apoi.wxhdgf14.CompassApp.appContext;
 
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustAttribution;
@@ -34,53 +32,53 @@ public class MyAdjustUtils {
 
     private MyAdjustUtils(String appToken) {
         AdjustConfig config = new AdjustConfig(appContext, appToken, AdjustConfig.ENVIRONMENT_PRODUCTION);
-//        config.setLogLevel(LogLevel.VERBOSE);
-//        config.setOnSessionTrackingSucceededListener(new OnSessionTrackingSucceededListener() {
-//            @Override
-//            public void onFinishedSessionTrackingSucceeded(AdjustSessionSuccess adjustSessionSuccess) {
-//                Log.i(TAG, "onFinishedSessionTrackingSucceeded," + adjustSessionSuccess.toString());
-//
-//            }
-//        });
-//        config.setOnSessionTrackingFailedListener(new OnSessionTrackingFailedListener() {
-//            @Override
-//            public void onFinishedSessionTrackingFailed(AdjustSessionFailure adjustSessionFailure) {
-//                Log.i(TAG, "onFinishedSessionTrackingFailed," + adjustSessionFailure.toString());
-//            }
-//        });
-//
-//        config.setOnAttributionChangedListener(new OnAttributionChangedListener() {
-//            @Override
-//            public void onAttributionChanged(AdjustAttribution attribution) {
-//                Log.i(TAG, "onAttributionChanged," + attribution.toString());
-//            }
-//        });
-//
-//        config.setOnEventTrackingFailedListener(new OnEventTrackingFailedListener() {
-//            @Override
-//            public void onFinishedEventTrackingFailed(AdjustEventFailure adjustEventFailure) {
-//                Log.i(TAG, "onFinishedEventTrackingFailed," + adjustEventFailure.toString());
-//            }
-//        });
-//
-//
-//        config.setOnEventTrackingSucceededListener(new OnEventTrackingSucceededListener() {
-//            @Override
-//            public void onFinishedEventTrackingSucceeded(AdjustEventSuccess eventSuccessResponseData) {
-//                Log.i(TAG, "onFinishedEventTrackingSucceeded---" + eventSuccessResponseData.toString());
-//            }
-//        });
-//
-//        config.setOnEventTrackingFailedListener(new OnEventTrackingFailedListener() {
-//            @Override
-//            public void onFinishedEventTrackingFailed(AdjustEventFailure adjustEventFailure) {
-//                Log.i(TAG, "onFinishedEventTrackingFailed---" + adjustEventFailure.toString());
-//            }
-//        });
+        config.setLogLevel(LogLevel.VERBOSE);
+        config.setOnSessionTrackingSucceededListener(new OnSessionTrackingSucceededListener() {
+            @Override
+            public void onFinishedSessionTrackingSucceeded(AdjustSessionSuccess adjustSessionSuccess) {
+                //Log.i(TAG, "onFinishedSessionTrackingSucceeded," + adjustSessionSuccess.toString());
+
+            }
+        });
+        config.setOnSessionTrackingFailedListener(new OnSessionTrackingFailedListener() {
+            @Override
+            public void onFinishedSessionTrackingFailed(AdjustSessionFailure adjustSessionFailure) {
+                //Log.i(TAG, "onFinishedSessionTrackingFailed," + adjustSessionFailure.toString());
+            }
+        });
+
+        config.setOnAttributionChangedListener(new OnAttributionChangedListener() {
+            @Override
+            public void onAttributionChanged(AdjustAttribution attribution) {
+                //Log.i(TAG, "onAttributionChanged," + attribution.toString());
+            }
+        });
+
+        config.setOnEventTrackingFailedListener(new OnEventTrackingFailedListener() {
+            @Override
+            public void onFinishedEventTrackingFailed(AdjustEventFailure adjustEventFailure) {
+                //Log.i(TAG, "onFinishedEventTrackingFailed," + adjustEventFailure.toString());
+            }
+        });
+
+
+        config.setOnEventTrackingSucceededListener(new OnEventTrackingSucceededListener() {
+            @Override
+            public void onFinishedEventTrackingSucceeded(AdjustEventSuccess eventSuccessResponseData) {
+                //Log.i(TAG, "onFinishedEventTrackingSucceeded---" + eventSuccessResponseData.toString());
+            }
+        });
+
+        config.setOnEventTrackingFailedListener(new OnEventTrackingFailedListener() {
+            @Override
+            public void onFinishedEventTrackingFailed(AdjustEventFailure adjustEventFailure) {
+                //Log.i(TAG, "onFinishedEventTrackingFailed---" + adjustEventFailure.toString());
+            }
+        });
 
         Adjust.onCreate(config);
         Adjust.onResume();
-        Log.i(TAG, "Adjust onResume=" + config);
+        //Log.i(TAG, "Adjust onResume=" + config);
     }
 
 /***
@@ -126,7 +124,7 @@ break;
 }
 
 @Override public void onInstallReferrerServiceDisconnected() {
-// Log.d(TAG, "onInstallReferrerServiceDisconnected!");
+// //Log.d(TAG, "onInstallReferrerServiceDisconnected!");
 if (!isCallback.getAndSet(true)) {
 callback.installReferer("Organic");
 }

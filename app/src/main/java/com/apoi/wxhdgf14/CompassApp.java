@@ -1,9 +1,9 @@
-package com.mjb68.test;
+package com.apoi.wxhdgf14;
 
 import android.app.Application;
 import android.content.Context;
 
-public class DemoApp extends Application {
+public class CompassApp extends Application {
 
 
     public static Context appContext;

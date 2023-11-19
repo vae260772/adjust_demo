@@ -2,17 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".DemoApp"
+        android:name=".CompassApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Mjb68">
+        android:theme="@style/BaseTheme">
         <activity
-            android:name=".bcode.WelcomeActivity"
+            android:name=".CompassWelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,14 +22,14 @@
         </activity>
 
         <activity
-            android:name=".bcode.B_WebActivity"
+            android:name=".CompassWebActivity"
             android:exported="false">
 
         </activity>
 
 
         <activity
-            android:name=".A_Activity"
+            android:name=".CompassActivity"
             android:exported="false">
 
         </activity>
