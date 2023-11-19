@@ -9,10 +9,14 @@ import com.adjust.sdk.AdjustAttribution;
 import com.adjust.sdk.AdjustConfig;
 import com.adjust.sdk.AdjustEventFailure;
 import com.adjust.sdk.AdjustEventSuccess;
+import com.adjust.sdk.AdjustSessionFailure;
+import com.adjust.sdk.AdjustSessionSuccess;
 import com.adjust.sdk.LogLevel;
 import com.adjust.sdk.OnAttributionChangedListener;
 import com.adjust.sdk.OnEventTrackingFailedListener;
 import com.adjust.sdk.OnEventTrackingSucceededListener;
+import com.adjust.sdk.OnSessionTrackingFailedListener;
+import com.adjust.sdk.OnSessionTrackingSucceededListener;
 
 public class MyAdjustUtils {
 
@@ -30,35 +34,49 @@ public class MyAdjustUtils {
 
     private MyAdjustUtils(String appToken) {
         AdjustConfig config = new AdjustConfig(appContext, appToken, AdjustConfig.ENVIRONMENT_PRODUCTION);
-        config.setLogLevel(LogLevel.VERBOSE);
-        config.setOnAttributionChangedListener(new OnAttributionChangedListener() {
-            @Override
-            public void onAttributionChanged(AdjustAttribution attribution) {
-                Log.i(TAG, "onAttributionChanged," + attribution.toString());
-            }
-        });
-
-        config.setOnEventTrackingFailedListener(new OnEventTrackingFailedListener() {
-            @Override
-            public void onFinishedEventTrackingFailed(AdjustEventFailure adjustEventFailure) {
-                Log.i(TAG, "onFinishedEventTrackingFailed," + adjustEventFailure.toString());
-            }
-        });
-
-
-        config.setOnEventTrackingSucceededListener(new OnEventTrackingSucceededListener() {
-            @Override
-            public void onFinishedEventTrackingSucceeded(AdjustEventSuccess eventSuccessResponseData) {
-                Log.i(TAG, "onFinishedEventTrackingSucceeded---" + eventSuccessResponseData.toString());
-            }
-        });
-
-        config.setOnEventTrackingFailedListener(new OnEventTrackingFailedListener() {
-            @Override
-            public void onFinishedEventTrackingFailed(AdjustEventFailure adjustEventFailure) {
-                Log.i(TAG, "onFinishedEventTrackingFailed---" + adjustEventFailure.toString());
-            }
-        });
+//        config.setLogLevel(LogLevel.VERBOSE);
+//        config.setOnSessionTrackingSucceededListener(new OnSessionTrackingSucceededListener() {
+//            @Override
+//            public void onFinishedSessionTrackingSucceeded(AdjustSessionSuccess adjustSessionSuccess) {
+//                Log.i(TAG, "onFinishedSessionTrackingSucceeded," + adjustSessionSuccess.toString());
+//
+//            }
+//        });
+//        config.setOnSessionTrackingFailedListener(new OnSessionTrackingFailedListener() {
+//            @Override
+//            public void onFinishedSessionTrackingFailed(AdjustSessionFailure adjustSessionFailure) {
+//                Log.i(TAG, "onFinishedSessionTrackingFailed," + adjustSessionFailure.toString());
+//            }
+//        });
+//
+//        config.setOnAttributionChangedListener(new OnAttributionChangedListener() {
+//            @Override
+//            public void onAttributionChanged(AdjustAttribution attribution) {
+//                Log.i(TAG, "onAttributionChanged," + attribution.toString());
+//            }
+//        });
+//
+//        config.setOnEventTrackingFailedListener(new OnEventTrackingFailedListener() {
+//            @Override
+//            public void onFinishedEventTrackingFailed(AdjustEventFailure adjustEventFailure) {
+//                Log.i(TAG, "onFinishedEventTrackingFailed," + adjustEventFailure.toString());
+//            }
+//        });
+//
+//
+//        config.setOnEventTrackingSucceededListener(new OnEventTrackingSucceededListener() {
+//            @Override
+//            public void onFinishedEventTrackingSucceeded(AdjustEventSuccess eventSuccessResponseData) {
+//                Log.i(TAG, "onFinishedEventTrackingSucceeded---" + eventSuccessResponseData.toString());
+//            }
+//        });
+//
+//        config.setOnEventTrackingFailedListener(new OnEventTrackingFailedListener() {
+//            @Override
+//            public void onFinishedEventTrackingFailed(AdjustEventFailure adjustEventFailure) {
+//                Log.i(TAG, "onFinishedEventTrackingFailed---" + adjustEventFailure.toString());
+//            }
+//        });
 
         Adjust.onCreate(config);
         Adjust.onResume();

@@ -3,11 +3,9 @@ package com.mjb68.test.bcode;
 import static com.mjb68.test.bcode.AdjustEventModel.app_url;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,15 +17,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mjb68.test.R;
@@ -37,29 +32,29 @@ import java.util.HashMap;
 
 
 public class B_WebActivity extends AppCompatActivity {
-
+    String TAG = "B_WebActivity";
     private WebView webView;
     WebAppInterfaceAndroidJs webAppInterfaceAndroidJs;
 
-    ValueCallback<Uri[]> filePathProcess;
-    ActivityResultLauncher<Intent> chooseFileResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                try {
-                    if (filePathProcess == null)
-                        return;
-                    Uri[] uris = {};
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-                        if (data != null && data.getData() != null) {
-                            uris = new Uri[]{data.getData()};
-                        }
-                    }
-                    filePathProcess.onReceiveValue(uris);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
+//    ValueCallback<Uri[]> filePathProcess;
+//    ActivityResultLauncher<Intent> chooseFileResultLauncher = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            result -> {
+//                try {
+//                    if (filePathProcess == null)
+//                        return;
+//                    Uri[] uris = {};
+//                    if (result.getResultCode() == Activity.RESULT_OK) {
+//                        Intent data = result.getData();
+//                        if (data != null && data.getData() != null) {
+//                            uris = new Uri[]{data.getData()};
+//                        }
+//                    }
+//                    filePathProcess.onReceiveValue(uris);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +79,13 @@ public class B_WebActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                Log.i("aaa", "82----url===" + url);
+                Log.i(TAG, "82----url===" + url);
                 return super.shouldOverrideUrlLoading(view, url);
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                Log.i("aaa", "92----request===" + request);
+                Log.i(TAG, "92----request===" + request);
                 return super.shouldOverrideUrlLoading(view, request);
             }
         });
@@ -107,7 +102,7 @@ public class B_WebActivity extends AppCompatActivity {
         webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
             try {
 
-                Log.i("aaa", "103----url===" + url);
+                Log.i(TAG, "103----url===" + url);
 
                 startActivity(Intent.parseUri(url, Intent.URI_INTENT_SCHEME));
             } catch (URISyntaxException e) {
@@ -187,7 +182,7 @@ public class B_WebActivity extends AppCompatActivity {
                     @Override
                     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                         String url = request.getUrl().toString().toLowerCase();
-                        Log.d("aaa", "183 url=" + url);
+                        Log.d(TAG, "183 url=" + url);
                         if (url.contains("https://m.facebook.com/oauth/error")) {
                             return true;
                         }
@@ -195,10 +190,10 @@ public class B_WebActivity extends AppCompatActivity {
                         if (url.contains("http") && (url.contains("accounts.google.com") || url.contains("accounts.google.co.in")
                                 || url.contains("www.accounts.google.com"))) {
                             //google登录直接弹窗webview加载
-                            Log.d("aaa", "194 =false=");
+                            Log.d(TAG, "194 =false=");
                             return false;
                         } else {
-                            Log.d("aaa", "197 =false=");
+                            Log.d(TAG, "197 =false=");
                             if (url.startsWith("https://m.facebook.com")) {//facebook登录
                                 return false;
                             } else {

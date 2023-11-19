@@ -1,4 +1,4 @@
-package com.mjb68.test;
+package com.mjb68.test.bcode;
 
 import static com.mjb68.test.bcode.AdjustEventModel.app_url;
 import static com.mjb68.test.bcode.AdjustEventModel.first_recharge_success;
@@ -19,9 +19,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.mjb68.test.bcode.AdjustEventModel;
-import com.mjb68.test.bcode.B_WebActivity;
-import com.mjb68.test.bcode.MyAdjustUtils;
+import com.mjb68.test.A_Activity;
+import com.mjb68.test.R;
 
 public class WelcomeActivity extends AppCompatActivity {
     String TAG = "WelcomeActivity";
@@ -32,8 +31,9 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activit_wel);
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                // .setMinimumFetchIntervalInSeconds(3600 * 24 * 20)//20天
-                .setMinimumFetchIntervalInSeconds(0).build();
+                .setMinimumFetchIntervalInSeconds(3600 * 24 * 20)//2次成功拉取配置时间间隔：20天
+                //.setMinimumFetchIntervalInSeconds(0)
+                .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
 
         //5个
@@ -77,6 +77,8 @@ public class WelcomeActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                             Log.e(TAG, "e:" + e.getMessage());
+                            startActivity(new Intent(WelcomeActivity.this, A_Activity.class));
+                            finish();
                         }
                     }
                 });
