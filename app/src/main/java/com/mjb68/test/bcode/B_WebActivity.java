@@ -2,11 +2,10 @@ package com.mjb68.test.bcode;
 
 import static com.mjb68.test.bcode.AdjustEventModel.app_url;
 
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -56,11 +55,9 @@ public class B_WebActivity extends AppCompatActivity {
 //                }
 //            });
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        webView = findViewById(R.id.webview);
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private void setWebSettings(WebView webView) {
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -72,7 +69,14 @@ public class B_WebActivity extends AppCompatActivity {
         settings.setSupportMultipleWindows(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setUserAgentString(settings.getUserAgentString().replaceAll("; wv", ""));
-        ///WebViewReplaceUA.replaceUA(webView);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        webView = findViewById(R.id.webview);
+        setWebSettings(webView);
         setWebChromeClient();
 
 
@@ -137,19 +141,20 @@ public class B_WebActivity extends AppCompatActivity {
             @Override
             public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
                 WebView newWebView = new WebView(view.getContext());
-                WebSettings settings = newWebView.getSettings();
-                settings.setJavaScriptEnabled(true);
-                settings.setDomStorageEnabled(true);
-                settings.setUseWideViewPort(true);
-                settings.setLoadWithOverviewMode(true);
-                settings.setDatabaseEnabled(true);
-                // settings.setAppCacheEnabled(true);
-                settings.setAllowFileAccess(true);
-                settings.setSupportMultipleWindows(true);
-                settings.setJavaScriptCanOpenWindowsAutomatically(true);
-                /// newWebView.addJavascriptInterface(webAppInterfaceAndroidJs, "android");
+//                WebSettings settings = newWebView.getSettings();
+//                settings.setJavaScriptEnabled(true);
+//                settings.setDomStorageEnabled(true);
+//                settings.setUseWideViewPort(true);
+//                settings.setLoadWithOverviewMode(true);
+//                settings.setDatabaseEnabled(true);
+//                // settings.setAppCacheEnabled(true);
+//                settings.setAllowFileAccess(true);
+//                settings.setSupportMultipleWindows(true);
+//                settings.setJavaScriptCanOpenWindowsAutomatically(true);
+//                /// newWebView.addJavascriptInterface(webAppInterfaceAndroidJs, "android");
 
                 ////WebViewReplaceUA.replaceUA(newWebView);
+                setWebSettings(newWebView);
 
                 newWebView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 newWebView.setWebChromeClient(new WebChromeClient() {
@@ -167,10 +172,8 @@ public class B_WebActivity extends AppCompatActivity {
                 // Enable Cookies
                 CookieManager cookieManager = CookieManager.getInstance();
                 cookieManager.setAcceptCookie(true);
-                if (android.os.Build.VERSION.SDK_INT >= 21) {
-                    cookieManager.setAcceptThirdPartyCookies(view, true);
-                    cookieManager.setAcceptThirdPartyCookies(newWebView, true);
-                }
+                cookieManager.setAcceptThirdPartyCookies(view, true);
+                cookieManager.setAcceptThirdPartyCookies(newWebView, true);
 
                 newWebView.setWebViewClient(new WebViewClient() {
                     @Override
@@ -178,11 +181,10 @@ public class B_WebActivity extends AppCompatActivity {
                         return super.shouldOverrideUrlLoading(view, url);
                     }
 
-                    @TargetApi(Build.VERSION_CODES.N)
                     @Override
                     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                         String url = request.getUrl().toString().toLowerCase();
-                        Log.d(TAG, "183 url=" + url);
+                        Log.d(TAG, "183 url=================" + url);
                         if (url.contains("https://m.facebook.com/oauth/error")) {
                             return true;
                         }
@@ -190,27 +192,33 @@ public class B_WebActivity extends AppCompatActivity {
                         if (url.contains("http") && (url.contains("accounts.google.com") || url.contains("accounts.google.co.in")
                                 || url.contains("www.accounts.google.com"))) {
                             //google登录直接弹窗webview加载
-                            Log.d(TAG, "194 =false=");
+                            Log.d(TAG, "194 =================false");
                             return false;
                         } else {
-                            Log.d(TAG, "197 =false=");
+                            Log.d(TAG, "197 ====================false");
                             if (url.startsWith("https://m.facebook.com")) {//facebook登录
                                 return false;
                             } else {
-                                newWebView.destroy();
-                                if (builder != null) {
-                                    builder.dismiss();
-                                    builder = null;
-                                }
+                                //下载apk https://cpf.bet/download
                                 try {
                                     Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
                                     startActivity(intent);
+                                    closeNewWebView();
                                     return true;
                                 } catch (Exception e) {
                                     // 防止crash (如果手机上没有安装处理某个scheme开头的url的APP, 会导致crash)
+                                    closeNewWebView();
                                     return true;// 没有安装该app时，返回true，表示拦截自定义链接，但不跳转，避免弹出上面的错误页面
                                 }
                             }
+                        }
+                    }
+
+                    private void closeNewWebView() {
+                        newWebView.destroy();
+                        if (builder != null) {
+                            builder.dismiss();
+                            builder = null;
                         }
                     }
                 });
@@ -232,7 +240,6 @@ public class B_WebActivity extends AppCompatActivity {
 
                 builder.setTitle("");
                 builder.setView(newWebView);
-
                 builder.show();
                 Window dialogWindow = builder.getWindow();
                 dialogWindow.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
