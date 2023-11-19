@@ -66,7 +66,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                             ".first_recharge_success: " + first_recharge_success, Toast.LENGTH_LONG).show();
 
 
-                            //先不做归因，直接接口返回有值，就跳转
+                            //先不做归因，直接接口返回有值，就跳转；没值就A面
                             if (TextUtils.isEmpty(app_url)) {
                                 startActivity(new Intent(WelcomeActivity.this, A_Activity.class));
                             } else {
