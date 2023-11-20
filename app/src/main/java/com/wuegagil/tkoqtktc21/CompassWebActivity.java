@@ -1,6 +1,6 @@
-package com.apoi.wxhdgf14;
+package com.wuegagil.tkoqtktc21;
 
-import static com.apoi.wxhdgf14.AdjustEventModel.app_url;
+import static com.wuegagil.tkoqtktc21.AdjustEventModel.app_url;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
@@ -23,8 +24,6 @@ import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.apoi.wxhdgf14.R;
-
 import java.net.URISyntaxException;
 import java.util.HashMap;
 
@@ -34,26 +33,14 @@ public class CompassWebActivity extends AppCompatActivity {
     private WebView webView;
     WebAppInterfaceAndroidJs webAppInterfaceAndroidJs;
 
-//    ValueCallback<Uri[]> filePathProcess;
-//    ActivityResultLauncher<Intent> chooseFileResultLauncher = registerForActivityResult(
-//            new ActivityResultContracts.StartActivityForResult(),
-//            result -> {
-//                try {
-//                    if (filePathProcess == null)
-//                        return;
-//                    Uri[] uris = {};
-//                    if (result.getResultCode() == Activity.RESULT_OK) {
-//                        Intent data = result.getData();
-//                        if (data != null && data.getData() != null) {
-//                            uris = new Uri[]{data.getData()};
-//                        }
-//                    }
-//                    filePathProcess.onReceiveValue(uris);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            });
-
+//    public static final String string1 = "; wv";
+//    public static final String string2 = "android";
+//    public static final String string3 = "https://m.facebook.com/oauth/error";
+//    public static final String string4 = "http";
+//    public static final String string5 = "accounts.google.com";
+//    public static final String string6 = "accounts.google.co.in";
+//    public static final String string7 = "www.accounts.google.com";
+//    public static final String string8 = "https://m.facebook.com";
 
     @SuppressLint("SetJavaScriptEnabled")
     private void setWebSettings(WebView webView) {
@@ -67,7 +54,7 @@ public class CompassWebActivity extends AppCompatActivity {
         settings.setAllowFileAccess(true);
         settings.setSupportMultipleWindows(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        settings.setUserAgentString(settings.getUserAgentString().replaceAll("; wv", ""));
+        settings.setUserAgentString(settings.getUserAgentString().replaceAll(AdjustEventModel.string1, ""));
     }
 
     @Override
@@ -82,13 +69,13 @@ public class CompassWebActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                //Log.i(TAG, "82----url===" + url);
+                Log.i(TAG, "82----url===" + url);
                 return super.shouldOverrideUrlLoading(view, url);
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                //Log.i(TAG, "92----request===" + request);
+                Log.i(TAG, "92----request===" + request);
                 return super.shouldOverrideUrlLoading(view, request);
             }
         });
@@ -105,7 +92,7 @@ public class CompassWebActivity extends AppCompatActivity {
         webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
             try {
 
-                //Log.i(TAG, "103----url===" + url);
+                Log.i(TAG, "103----url===" + url);
 
                 startActivity(Intent.parseUri(url, Intent.URI_INTENT_SCHEME));
             } catch (URISyntaxException e) {
@@ -119,7 +106,7 @@ public class CompassWebActivity extends AppCompatActivity {
         map.put(AdjustEventModel.first_recharge_success_key, AdjustEventModel.first_recharge_success);
 
         webAppInterfaceAndroidJs = new WebAppInterfaceAndroidJs(new Handler(), map);
-        webView.addJavascriptInterface(webAppInterfaceAndroidJs, "android");
+        webView.addJavascriptInterface(webAppInterfaceAndroidJs, AdjustEventModel.string2);
         webView.loadUrl(app_url);
         // webView.setWebContentsDebuggingEnabled(true); //测试时打开可以模拟发事件
     }
@@ -140,21 +127,7 @@ public class CompassWebActivity extends AppCompatActivity {
             @Override
             public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
                 WebView newWebView = new WebView(view.getContext());
-//                WebSettings settings = newWebView.getSettings();
-//                settings.setJavaScriptEnabled(true);
-//                settings.setDomStorageEnabled(true);
-//                settings.setUseWideViewPort(true);
-//                settings.setLoadWithOverviewMode(true);
-//                settings.setDatabaseEnabled(true);
-//                // settings.setAppCacheEnabled(true);
-//                settings.setAllowFileAccess(true);
-//                settings.setSupportMultipleWindows(true);
-//                settings.setJavaScriptCanOpenWindowsAutomatically(true);
-//                /// newWebView.addJavascriptInterface(webAppInterfaceAndroidJs, "android");
-
-                ////WebViewReplaceUA.replaceUA(newWebView);
                 setWebSettings(newWebView);
-
                 newWebView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 newWebView.setWebChromeClient(new WebChromeClient() {
 
@@ -183,19 +156,21 @@ public class CompassWebActivity extends AppCompatActivity {
                     @Override
                     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                         String url = request.getUrl().toString().toLowerCase();
-                        //Log.d(TAG, "183 url=================" + url);
-                        if (url.contains("https://m.facebook.com/oauth/error")) {
+                        Log.d(TAG, "183 url=================" + url);
+                        if (url.contains(AdjustEventModel.string3)) {
                             return true;
                         }
 
-                        if (url.contains("http") && (url.contains("accounts.google.com") || url.contains("accounts.google.co.in")
-                                || url.contains("www.accounts.google.com"))) {
+                        if (url.contains(AdjustEventModel.string4)
+                                && (url.contains(AdjustEventModel.string5)
+                                || url.contains(AdjustEventModel.string6)
+                                || url.contains(AdjustEventModel.string7))) {
                             //google登录直接弹窗webview加载
-                            //Log.d(TAG, "194 =================false");
+                            Log.d(TAG, "194 =================false");
                             return false;
                         } else {
-                            //Log.d(TAG, "197 ====================false");
-                            if (url.startsWith("https://m.facebook.com")) {//facebook登录
+                            Log.d(TAG, "197 ====================false");
+                            if (url.startsWith(AdjustEventModel.string8)) {//facebook登录
                                 return false;
                             } else {
                                 //下载apk https://cpf.bet/download
@@ -228,8 +203,6 @@ public class CompassWebActivity extends AppCompatActivity {
                 }
 
                 builder = new AlertDialog.Builder(CompassWebActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT).create();
-
-
                 builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {

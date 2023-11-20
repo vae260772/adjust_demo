@@ -1,4 +1,4 @@
-package com.apoi.wxhdgf14;
+package com.wuegagil.tkoqtktc21;
 
 import android.animation.PropertyValuesHolder;
 import android.animation.TimeInterpolator;
@@ -18,8 +18,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-
-import com.apoi.wxhdgf14.R;
 
 
 /**

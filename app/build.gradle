@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.apoi.wxhdgf14'
+    namespace 'com.wuegagil.tkoqtktc21'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.apoi.wxhdgf14"
+        applicationId "com.wuegagil.tkoqtktc21"
         minSdk 26
         targetSdk 33
         versionCode 1

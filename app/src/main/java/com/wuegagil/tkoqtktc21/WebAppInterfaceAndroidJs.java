@@ -1,4 +1,4 @@
-package com.apoi.wxhdgf14;
+package com.wuegagil.tkoqtktc21;
 
 import android.os.Handler;
 import android.util.Log;
@@ -45,7 +45,7 @@ public class WebAppInterfaceAndroidJs {
     //1.注册成功
     @JavascriptInterface
     public void onEventJs(String eventName) {
-        //Log.i(TAG, "eventName:" + eventName);
+        Log.i(TAG, "eventName:" + eventName);
         this.trackEvent(eventName);
     }
 
@@ -53,14 +53,14 @@ public class WebAppInterfaceAndroidJs {
     //2.充值成功
     @JavascriptInterface
     public void onEventJsRecharge(String eventName) {
-        //Log.i(TAG, "eventName:" + eventName);
+        Log.i(TAG, "eventName:" + eventName);
         this.trackEvent(eventName);
     }
 
     //3.首充成功
     @JavascriptInterface
     public void onEventJsFirstRecharge(String eventName) {
-        //Log.i(TAG, "eventName:" + eventName);
+        Log.i(TAG, "eventName:" + eventName);
         this.trackEvent(eventName);
 
     }

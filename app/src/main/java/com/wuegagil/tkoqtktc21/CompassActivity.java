@@ -1,4 +1,4 @@
-package com.apoi.wxhdgf14;
+package com.wuegagil.tkoqtktc21;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -18,6 +18,13 @@ public class CompassActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compass);
+
+
+
+
+
+        /////////////////////////////
+
         chaosCompassView = (ChaosCompassView) findViewById(R.id.ccv);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
