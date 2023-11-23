@@ -108,9 +108,20 @@ public class CompassActivity extends Activity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         ProgressBar progressBar = new ProgressBar(this);
+
+
         builder.setView(progressBar);
         dialog = builder.create();
         dialog.show();
+
+
+//        Window window = dialog.getWindow();
+//        window.getAttributes().width = 500;
+//        window.getAttributes().height = 500;
+
+
+        dialog.getWindow().setLayout(200, WRAP_CONTENT);
+        //dialog.getWindow().setAttributes(layoutParams);
 
 
         ImageView selection_type = findViewById(R.id.selection_type);
@@ -171,8 +182,9 @@ public class CompassActivity extends Activity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
-                            if (dialog != null)
-                                dialog.cancel();
+                            if (dialog != null) {
+                                //   dialog.cancel();
+                            }
                         }
                     }
                 });
