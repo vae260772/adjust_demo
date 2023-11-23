@@ -1,3 +1,14 @@
-<resources>
-    <string name="app_name">firebase 马甲包测试</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Chinese Compass</string>
+
+    <string name="getting_location">Getting location...</string>
+    <string name="cannot_get_location">Cannot get your location</string>
+    <string name="location_north">%s N</string>
+    <string name="location_south">%s S</string>
+    <string name="location_east">%s E</string>
+    <string name="location_west">%s W</string>
+    <string name="altitude">Altitude: <xliff:g id="value">%d</xliff:g> m</string>
+    <string name="pressure">Pressure: <xliff:g id="value">%.1f</xliff:g> kPa</string>
+
+
 </resources>

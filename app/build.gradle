@@ -4,30 +4,78 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "${variant.applicationId}_${variant.name}_${variant.versionName}_${variant.versionCode}.apk"
+    }
+}
+
+
+
 android {
-    namespace 'com.mjb68.test'
+    namespace 'com.uvfckjoj.brzvoelz28'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.mjb68.test"
+        applicationId "com.uvfckjoj.brzvoelz28"
         minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
     }
 
-    buildTypes {
+
+
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            storeFile file('1.jks')
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+        }
+
+        debug {
+            storeFile file('1.jks')
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
         }
     }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+        }
+    }
+
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+
+    buildFeatures {
+        dataBinding = true
+        buildConfig =true
     }
 }
 
