@@ -120,7 +120,7 @@ public class CompassActivity extends Activity {
 //        window.getAttributes().height = 500;
 
 
-        dialog.getWindow().setLayout(200, WRAP_CONTENT);
+        dialog.getWindow().setLayout(200, 200);
         //dialog.getWindow().setAttributes(layoutParams);
 
 
