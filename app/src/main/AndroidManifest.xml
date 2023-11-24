@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/BaseTheme">
         <activity
-            android:name=".CompassActivity"
+            android:name=".AppPrivacyActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,11 +20,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".AppPrivacyActivity"
-            android:exported="false">
+<!--        <activity-->
+<!--            android:name=".AppPrivacyActivity"-->
+<!--            android:exported="false">-->
 
-        </activity>
+<!--        </activity>-->
 
 
         <activity

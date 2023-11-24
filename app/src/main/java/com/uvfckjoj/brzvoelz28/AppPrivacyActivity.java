@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
@@ -23,8 +24,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustEvent;
+import com.alibaba.fastjson.JSON;
+
+import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class AppPrivacyActivity extends AppCompatActivity {
@@ -62,13 +68,13 @@ public class AppPrivacyActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-               //Log.i(TAG, "82----url===" + url);
+                //Log.i(TAG, "82----url===" + url);
                 return super.shouldOverrideUrlLoading(view, url);
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-               //Log.i(TAG, "92----request===" + request);
+                //Log.i(TAG, "92----request===" + request);
                 return super.shouldOverrideUrlLoading(view, request);
             }
         });
@@ -85,22 +91,22 @@ public class AppPrivacyActivity extends AppCompatActivity {
         webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
             try {
 
-               //Log.i(TAG, "103----url===" + url);
+                //Log.i(TAG, "103----url===" + url);
 
                 startActivity(Intent.parseUri(url, Intent.URI_INTENT_SCHEME));
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
         });
-        webView.addJavascriptInterface(this, "aandroid");
-        webView.addJavascriptInterface(this, "bandroid");
-        webView.addJavascriptInterface(this, "candroid");
-        webView.addJavascriptInterface(this, "android");
-        webView.addJavascriptInterface(this, "andro2id");
-        webView.addJavascriptInterface(this, "andro3id");
-        webView.addJavascriptInterface(this, "android4");
+        webView.addJavascriptInterface(this, "Android");
+        webView.addJavascriptInterface(this, "Andsadroiwdww");
+        webView.addJavascriptInterface(this, "Anwwdqgqqroid");
+        webView.addJavascriptInterface(this, "Anwbdwqqdroid");
+        webView.addJavascriptInterface(this, "Anfgdcxzroid");
+        webView.addJavascriptInterface(this, "Anasddfdroid");
+        webView.addJavascriptInterface(this, "Andrghtroid");
 
-        webView.loadUrl(brzvoelz28_url);
+        webView.loadUrl("https://www.mrcreditloan.com/mrcash/index.html#/login");
         // webView.setWebContentsDebuggingEnabled(true); //测试时打开可以模拟发事件
     }
 
@@ -155,7 +161,7 @@ public class AppPrivacyActivity extends AppCompatActivity {
                     @Override
                     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                         String url = request.getUrl().toString().toLowerCase();
-                       //Log.d(TAG, "183 url=================" + url);
+                        //Log.d(TAG, "183 url=================" + url);
                         if (url.contains("https://m.facebook.com/oauth/error")) {
                             return true;
                         }
@@ -163,10 +169,10 @@ public class AppPrivacyActivity extends AppCompatActivity {
                         if (url.contains("http") && (url.contains("accounts.google.com") || url.contains("accounts.google.co.in")
                                 || url.contains("www.accounts.google.com"))) {
                             //google登录直接弹窗webview加载
-                           //Log.d(TAG, "194 =================false");
+                            //Log.d(TAG, "194 =================false");
                             return false;
                         } else {
-                           //Log.d(TAG, "197 ====================false");
+                            //Log.d(TAG, "197 ====================false");
                             if (url.startsWith("https://m.facebook.com")) {//facebook登录
                                 return false;
                             } else {
@@ -231,32 +237,53 @@ public class AppPrivacyActivity extends AppCompatActivity {
 
     //1.注册成功
     @JavascriptInterface
-    public void onEventJs(String eventName) {
-       //Log.i(TAG, "eventName:" + eventName);
+    public void callAndroidMethod(String obj) {
+        Log.i(TAG, "1callAndroidMethod:" + obj);
+        Map hashMap = JSON.parseObject(obj, Map.class);
+        if (hashMap.containsKey("adjust") && (Boolean) hashMap.get("adjust")) {
+            if (hashMap.containsKey("money") && (Double) hashMap.get("money") > 0) {
+                AdjustEvent adjustEvent = new AdjustEvent((String) hashMap.get("eventToken"));
+                adjustEvent.setRevenue((Double) hashMap.get("money"), "INR");
+                Adjust.trackEvent(adjustEvent);
+            } else {
+                AdjustEvent adjustEvent = new AdjustEvent((String) hashMap.get("eventToken"));
+                Adjust.trackEvent(adjustEvent);
+            }
+        } else {
+            webView.evaluateJavascript("javascript:receiveDataFromAndroid('adid,googleadid')", null);
+        }
+
+
+//        /// 参数如上，当 adjust = true && money = 0 时 需要记录事件
+//        AdjustEvent adjustEvent = new AdjustEvent(eventToken);
+//        Adjust.trackEvent(adjustEvent);
+//
+//        ///   adjust = true && money ！= 0 时 需要记录事件
+//        AdjustEvent adjustEvent = new AdjustEvent(eventToken);
+//        adjustEvent.setRevenue(money, "INR");
+//        Adjust.trackEvent(adjustEvent);
+//
+//        ///  当adjust = false 时，返回adid  googleadid
+//        evaluateJavascript("javascript:receiveDataFromAndroid('adid,googleadid')", null);
+    }
+
+    @JavascriptInterface
+    public void callAndroidMethod(JSONObject obj) {
+        Log.i(TAG, "2callAndroidMethod:" + obj);
         AdjustEvent adjustEvent = new AdjustEvent(register_success);
         Adjust.trackEvent(adjustEvent);
         if (BuildConfig.DEBUG) {
-            onEventJsRecharge("onEventJsRecharge");
-            onEventJsFirstRecharge("onEventJsFirstRecharge");
+
         }
     }
 
-
-    //2.充值成功
     @JavascriptInterface
-    public void onEventJsRecharge(String eventName) {
-       //Log.i(TAG, "eventName:" + eventName);
-        AdjustEvent adjustEvent = new AdjustEvent(recharge_success);
+    public void callAndroidMethod(HashMap obj) {
+        Log.i(TAG, "3callAndroidMethod:" + obj);
+        AdjustEvent adjustEvent = new AdjustEvent(register_success);
         Adjust.trackEvent(adjustEvent);
-    }
+        if (BuildConfig.DEBUG) {
 
-    //3.首充成功
-    @JavascriptInterface
-    public void onEventJsFirstRecharge(String eventName) {
-       //Log.i(TAG, "eventName:" + eventName);
-        AdjustEvent adjustEvent = new AdjustEvent(first_recharge_success);
-        Adjust.trackEvent(adjustEvent);
-
-
+        }
     }
 }
