@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -133,20 +134,21 @@ public class Web1Activity extends AppCompatActivity {
     //1.注册成功
     @JavascriptInterface
     public void callAndroidMethod(String obj) {
-        //Log.i(TAG, "1callAndroidMethod:" + obj);
+        Log.i(TAG, "1callAndroidMethod:" + obj);
         Map hashMap = JSON.parseObject(obj, Map.class);
         if ((Boolean) hashMap.get(brzvoelz28_adjust)) {
             String eventToken = (String) hashMap.get(brzvoelz28_eventToken);
-            // //Log.i(TAG, "eventToken:" + eventToken);
+            Log.i(TAG, "eventToken:" + eventToken);
+            //java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.Double
             if ((Integer) hashMap.get(brzvoelz28_money) > 0) {
                 AdjustEvent adjustEvent = new AdjustEvent(eventToken);
                 adjustEvent.setRevenue((Integer) hashMap.get(brzvoelz28_money), brzvoelz28_INR);
                 Adjust.trackEvent(adjustEvent);
-                //Log.i(TAG, "1 adjustEvent:" + adjustEvent);
+                Log.i(TAG, "1 adjustEvent:" + adjustEvent);
             } else {
                 AdjustEvent adjustEvent = new AdjustEvent(eventToken);
                 Adjust.trackEvent(adjustEvent);
-                //Log.i(TAG, "2 adjustEvent:" + adjustEvent);
+                Log.i(TAG, "2 adjustEvent:" + adjustEvent);
             }
         } else {
             Adjust.getGoogleAdId(this, new OnDeviceIdsRead() {
