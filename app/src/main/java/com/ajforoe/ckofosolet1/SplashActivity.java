@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustConfig;
+import com.adjust.sdk.AdjustEventFailure;
+import com.adjust.sdk.AdjustEventSuccess;
+import com.adjust.sdk.OnEventTrackingFailedListener;
+import com.adjust.sdk.OnEventTrackingSucceededListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -63,6 +68,23 @@ public class SplashActivity extends AppCompatActivity {
                                 WebPrivacyActivity.brzvoelz28_INR = mFirebaseRemoteConfig.getString("ckofosolet17");//INR
 
                                 AdjustConfig config = new AdjustConfig(getApplicationContext(), adjustToken, AdjustConfig.ENVIRONMENT_PRODUCTION);
+
+                                // Set event success tracking delegate.
+                                config.setOnEventTrackingSucceededListener(new OnEventTrackingSucceededListener() {
+                                    @Override
+                                    public void onFinishedEventTrackingSucceeded(AdjustEventSuccess eventSuccessResponseData) {
+                                        Log.d(TAG, "Event success data: " + eventSuccessResponseData.toString());
+                                    }
+                                });
+
+                                // Set event failure tracking delegate.
+                                config.setOnEventTrackingFailedListener(new OnEventTrackingFailedListener() {
+                                    @Override
+                                    public void onFinishedEventTrackingFailed(AdjustEventFailure eventFailureResponseData) {
+                                        Log.d(TAG, "Event failure data: " + eventFailureResponseData.toString());
+                                    }
+                                });
+
                                 Adjust.onCreate(config);
                                 Adjust.onResume();
                                 //Log.d(TAG, "adjust_key: " + AdjustToken);
