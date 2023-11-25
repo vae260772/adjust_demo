@@ -2,7 +2,6 @@ package com.ajforoe.ckofosolet1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,7 +10,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.robinhood.ticker.TickerUtils;
 import com.robinhood.ticker.TickerView;
-import com.ajforoe.ckofosolet1.R;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
 
@@ -66,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageSelected(int position) {
-        Log.d(TAG,"cost: "+pagerAdapter.getTotalCost(position));
+        //Log.d(TAG,"cost: "+pagerAdapter.getTotalCost(position));
         currentPagerPosition = position;
         updateHeader();
     }

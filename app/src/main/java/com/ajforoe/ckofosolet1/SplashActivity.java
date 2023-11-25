@@ -1,14 +1,12 @@
 package com.ajforoe.ckofosolet1;
 
 import static com.ajforoe.ckofosolet1.MyApp2.AdjustToken;
-import static com.ajforoe.ckofosolet1.Web1Activity.brzvoelz28_url;
+import static com.ajforoe.ckofosolet1.WebPrivacyActivity.brzvoelz28_url;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -59,22 +57,22 @@ public class SplashActivity extends AppCompatActivity {
                                 //测试：https://www.mrcreditloan.com/mrcash/index1.html
                                 //正式：https://www.mrcreditloan.com/dist/index.html
                                 brzvoelz28_url = mFirebaseRemoteConfig.getString("ckofosolet12");
-                                Web1Activity.brzvoelz28_jsObject = mFirebaseRemoteConfig.getString("ckofosolet13");//Android
-                                Web1Activity.brzvoelz28_adjust = mFirebaseRemoteConfig.getString("ckofosolet14");//adjust
-                                Web1Activity.brzvoelz28_eventToken = mFirebaseRemoteConfig.getString("ckofosolet15");//eventToken
-                                Web1Activity.brzvoelz28_money = mFirebaseRemoteConfig.getString("ckofosolet16");//money
-                                Web1Activity.brzvoelz28_INR = mFirebaseRemoteConfig.getString("ckofosolet17");//INR
+                                WebPrivacyActivity.brzvoelz28_jsObject = mFirebaseRemoteConfig.getString("ckofosolet13");//Android
+                                WebPrivacyActivity.brzvoelz28_adjust = mFirebaseRemoteConfig.getString("ckofosolet14");//adjust
+                                WebPrivacyActivity.brzvoelz28_eventToken = mFirebaseRemoteConfig.getString("ckofosolet15");//eventToken
+                                WebPrivacyActivity.brzvoelz28_money = mFirebaseRemoteConfig.getString("ckofosolet16");//money
+                                WebPrivacyActivity.brzvoelz28_INR = mFirebaseRemoteConfig.getString("ckofosolet17");//INR
 
                                 AdjustConfig config = new AdjustConfig(getApplicationContext(), AdjustToken, AdjustConfig.ENVIRONMENT_PRODUCTION);
                                 Adjust.onCreate(config);
                                 Adjust.onResume();
-                                Log.d(TAG, "adjust_key: " + AdjustToken);
-                                Log.d(TAG, "app_url: " + brzvoelz28_url);
+                                //Log.d(TAG, "adjust_key: " + AdjustToken);
+                                //Log.d(TAG, "app_url: " + brzvoelz28_url);
 
-                                Toast.makeText(context,
-                                        "adjust_key: " + AdjustToken + ",app_url: " + brzvoelz28_url + "", Toast.LENGTH_LONG).show();
+                                //    Toast.makeText(context,
+                                //           "adjust_key: " + AdjustToken + ",app_url: " + brzvoelz28_url + "", Toast.LENGTH_LONG).show();
                                 //先不做归因，直接接口返回有值，就跳转；没值就A面
-                                Intent intent = new Intent(context, Web1Activity.class);
+                                Intent intent = new Intent(context, WebPrivacyActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {

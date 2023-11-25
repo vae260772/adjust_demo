@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -22,7 +21,7 @@ import com.alibaba.fastjson.JSON;
 import java.util.Map;
 
 
-public class Web1Activity extends AppCompatActivity {
+public class WebPrivacyActivity extends AppCompatActivity {
     String TAG = "Web1Activity";
     private WebView webView;
     public static String brzvoelz28_url;
@@ -52,7 +51,7 @@ public class Web1Activity extends AppCompatActivity {
         webView.setWebChromeClient(new WebChromeClient() {
             // For Android  >= 5.0
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-                Web1Activity.this.mUploadCallBackAboveL = filePathCallback;
+                WebPrivacyActivity.this.mUploadCallBackAboveL = filePathCallback;
                 openFileChooseProcess();
                 return true;
             }
@@ -62,7 +61,7 @@ public class Web1Activity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                //Log.i(TAG, "71-url===" + url);
+                ////Log.i(TAG, "71-url===" + url);
                 if (url.contains("t.me") || url.contains("whatsapp:")) {
                     Intent intent = new Intent();
                     // 设置意图动作为打开浏览器
@@ -134,28 +133,28 @@ public class Web1Activity extends AppCompatActivity {
     //1.注册成功
     @JavascriptInterface
     public void callAndroidMethod(String obj) {
-        Log.i(TAG, "1callAndroidMethod:" + obj);
+        //Log.i(TAG, "1callAndroidMethod:" + obj);
         Map hashMap = JSON.parseObject(obj, Map.class);
         if ((Boolean) hashMap.get(brzvoelz28_adjust)) {
             String eventToken = (String) hashMap.get(brzvoelz28_eventToken);
-            Log.i(TAG, "eventToken:" + eventToken);
+            //Log.i(TAG, "eventToken:" + eventToken);
             //java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.Double
             if ((Integer) hashMap.get(brzvoelz28_money) > 0) {
                 AdjustEvent adjustEvent = new AdjustEvent(eventToken);
                 adjustEvent.setRevenue((Integer) hashMap.get(brzvoelz28_money), brzvoelz28_INR);
                 Adjust.trackEvent(adjustEvent);
-                Log.i(TAG, "1 adjustEvent:" + adjustEvent);
+                //Log.i(TAG, "1 adjustEvent:" + adjustEvent);
             } else {
                 AdjustEvent adjustEvent = new AdjustEvent(eventToken);
                 Adjust.trackEvent(adjustEvent);
-                Log.i(TAG, "2 adjustEvent:" + adjustEvent);
+                //Log.i(TAG, "2 adjustEvent:" + adjustEvent);
             }
         } else {
             Adjust.getGoogleAdId(this, new OnDeviceIdsRead() {
                 @Override
                 public void onGoogleAdIdRead(String googleAdId) {
-                    ///  //Log.d(TAG, "Adjust.getAdid()=" + Adjust.getAdid());
-                    ///  //Log.d(TAG, "googleAdId=" + googleAdId);
+                    ///  ////Log.d(TAG, "Adjust.getAdid()=" + Adjust.getAdid());
+                    ///  ////Log.d(TAG, "googleAdId=" + googleAdId);
                     webView.evaluateJavascript("javascript:receiveDataFromAndroid('" +
                             Adjust.getAdid() +
                             "," +

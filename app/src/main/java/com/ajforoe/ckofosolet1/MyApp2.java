@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustAttribution;
@@ -44,8 +43,8 @@ public class MyApp2 extends Application {
         config.setOnAttributionChangedListener(new OnAttributionChangedListener() {
             @Override
             public void onAttributionChanged(AdjustAttribution attribution) {
-                Log.d("example", "Attribution callback called!");
-                Log.d("example", "Attribution: " + attribution.toString());
+                //Log.d("example", "Attribution callback called!");
+                //Log.d("example", "Attribution: " + attribution.toString());
             }
         });
 
@@ -53,8 +52,8 @@ public class MyApp2 extends Application {
         config.setOnEventTrackingSucceededListener(new OnEventTrackingSucceededListener() {
             @Override
             public void onFinishedEventTrackingSucceeded(AdjustEventSuccess eventSuccessResponseData) {
-                Log.d("example", "Event success callback called!");
-                Log.d("example", "Event success data: " + eventSuccessResponseData.toString());
+                //Log.d("example", "Event success callback called!");
+                //Log.d("example", "Event success data: " + eventSuccessResponseData.toString());
             }
         });
 
@@ -62,8 +61,8 @@ public class MyApp2 extends Application {
         config.setOnEventTrackingFailedListener(new OnEventTrackingFailedListener() {
             @Override
             public void onFinishedEventTrackingFailed(AdjustEventFailure eventFailureResponseData) {
-                Log.d("example", "Event failure callback called!");
-                Log.d("example", "Event failure data: " + eventFailureResponseData.toString());
+                //Log.d("example", "Event failure callback called!");
+                //Log.d("example", "Event failure data: " + eventFailureResponseData.toString());
             }
         });
 
@@ -71,8 +70,8 @@ public class MyApp2 extends Application {
         config.setOnSessionTrackingSucceededListener(new OnSessionTrackingSucceededListener() {
             @Override
             public void onFinishedSessionTrackingSucceeded(AdjustSessionSuccess sessionSuccessResponseData) {
-                Log.d("example", "Session success callback called!");
-                Log.d("example", "Session success data: " + sessionSuccessResponseData.toString());
+                //Log.d("example", "Session success callback called!");
+                //Log.d("example", "Session success data: " + sessionSuccessResponseData.toString());
             }
         });
 
@@ -80,8 +79,8 @@ public class MyApp2 extends Application {
         config.setOnSessionTrackingFailedListener(new OnSessionTrackingFailedListener() {
             @Override
             public void onFinishedSessionTrackingFailed(AdjustSessionFailure sessionFailureResponseData) {
-                Log.d("example", "Session failure callback called!");
-                Log.d("example", "Session failure data: " + sessionFailureResponseData.toString());
+                //Log.d("example", "Session failure callback called!");
+                //Log.d("example", "Session failure data: " + sessionFailureResponseData.toString());
             }
         });
 
@@ -89,8 +88,8 @@ public class MyApp2 extends Application {
         config.setOnDeeplinkResponseListener(new OnDeeplinkResponseListener() {
             @Override
             public boolean launchReceivedDeeplink(Uri deeplink) {
-                Log.d("example", "Deferred deep link callback called!");
-                Log.d("example", "Deep link URL: " + deeplink);
+                //Log.d("example", "Deferred deep link callback called!");
+                //Log.d("example", "Deep link URL: " + deeplink);
 
                 return true;
             }
@@ -105,39 +104,39 @@ public class MyApp2 extends Application {
     private static final class AdjustLifecycleCallbacks implements ActivityLifecycleCallbacks {
         @Override
         public void onActivityResumed(Activity activity) {
-            Log.d("example", "onActivityResumed callback called!");
+            //Log.d("example", "onActivityResumed callback called!");
             Adjust.onResume();
         }
 
         @Override
         public void onActivityPaused(Activity activity) {
-            Log.d("example", "onActivityPaused callback called!");
+            //Log.d("example", "onActivityPaused callback called!");
             Adjust.onPause();
         }
 
         @Override
         public void onActivityStopped(Activity activity) {
-            Log.d("example", "onActivityStopped callback called!");
+            //Log.d("example", "onActivityStopped callback called!");
         }
 
         @Override
         public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-            Log.d("example", "onActivitySaveInstanceState callback called!");
+            //Log.d("example", "onActivitySaveInstanceState callback called!");
         }
 
         @Override
         public void onActivityDestroyed(Activity activity) {
-            Log.d("example", "onActivityDestroyed callback called!");
+            //Log.d("example", "onActivityDestroyed callback called!");
         }
 
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-            Log.d("example", "onActivityCreated callback called!");
+            //Log.d("example", "onActivityCreated callback called!");
         }
 
         @Override
         public void onActivityStarted(Activity activity) {
-            Log.d("example", "onActivityStarted callback called!");
+            //Log.d("example", "onActivityStarted callback called!");
         }
     }
 }

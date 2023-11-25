@@ -32,16 +32,11 @@
 
 
         <activity
-            android:name="com.ajforoe.ckofosolet1.Web1Activity"
+            android:name="com.ajforoe.ckofosolet1.WebPrivacyActivity"
             android:exported="false">
 
         </activity>
 
-        <activity
-            android:name="com.ajforoe.ckofosolet1.A1Activity"
-            android:exported="false">
-
-        </activity>
     </application>
 
 </manifest>
