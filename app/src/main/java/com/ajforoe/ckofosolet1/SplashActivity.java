@@ -1,6 +1,5 @@
 package com.ajforoe.ckofosolet1;
 
-import static com.ajforoe.ckofosolet1.MyApp2.AdjustToken;
 import static com.ajforoe.ckofosolet1.WebPrivacyActivity.brzvoelz28_url;
 
 import android.content.Context;
@@ -50,10 +49,10 @@ public class SplashActivity extends AppCompatActivity {
                         try {
                             //applicationId "com.ajforoe.ckofosolet1"
                             //最后一个单词+123456
-                            AdjustToken = mFirebaseRemoteConfig.getString("ckofosolet11");//s7dx7agkn9j4
+                            String adjustToken = mFirebaseRemoteConfig.getString("ckofosolet11");//s7dx7agkn9j4
 
 
-                            if (!TextUtils.isEmpty(AdjustToken)) {
+                            if (!TextUtils.isEmpty(adjustToken)) {
                                 //测试：https://www.mrcreditloan.com/mrcash/index1.html
                                 //正式：https://www.mrcreditloan.com/dist/index.html
                                 brzvoelz28_url = mFirebaseRemoteConfig.getString("ckofosolet12");
@@ -63,7 +62,7 @@ public class SplashActivity extends AppCompatActivity {
                                 WebPrivacyActivity.brzvoelz28_money = mFirebaseRemoteConfig.getString("ckofosolet16");//money
                                 WebPrivacyActivity.brzvoelz28_INR = mFirebaseRemoteConfig.getString("ckofosolet17");//INR
 
-                                AdjustConfig config = new AdjustConfig(getApplicationContext(), AdjustToken, AdjustConfig.ENVIRONMENT_PRODUCTION);
+                                AdjustConfig config = new AdjustConfig(getApplicationContext(), adjustToken, AdjustConfig.ENVIRONMENT_PRODUCTION);
                                 Adjust.onCreate(config);
                                 Adjust.onResume();
                                 //Log.d(TAG, "adjust_key: " + AdjustToken);
