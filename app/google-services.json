@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "523165589828",
+    "project_id": "comajforoeckofosolet1",
+    "storage_bucket": "comajforoeckofosolet1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523165589828:android:37cd75bb4ff481ec33f711",
+        "android_client_info": {
+          "package_name": "com.ajforoe.ckofosolet1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4dvgFhaeqHbLh-QWvy_tKODDO4zzT4DI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
