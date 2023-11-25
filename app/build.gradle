@@ -13,7 +13,7 @@ android.applicationVariants.all { variant ->
 
 
 android {
-    namespace 'com.uvfckjoj.brzvoelz28'
+    namespace 'com.ajforoe.ckofosolet1'
     compileSdk 33
 
     defaultConfig {
@@ -99,4 +99,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:32.5.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation("com.google.firebase:firebase-config")
+//数字滚动控件
+    implementation 'com.robinhood.ticker:ticker:2.0.2'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
 }
