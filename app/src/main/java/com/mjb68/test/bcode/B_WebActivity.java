@@ -35,27 +35,6 @@ public class B_WebActivity extends AppCompatActivity {
     private WebView webView;
     WebAppInterfaceAndroidJs webAppInterfaceAndroidJs;
 
-//    ValueCallback<Uri[]> filePathProcess;
-//    ActivityResultLauncher<Intent> chooseFileResultLauncher = registerForActivityResult(
-//            new ActivityResultContracts.StartActivityForResult(),
-//            result -> {
-//                try {
-//                    if (filePathProcess == null)
-//                        return;
-//                    Uri[] uris = {};
-//                    if (result.getResultCode() == Activity.RESULT_OK) {
-//                        Intent data = result.getData();
-//                        if (data != null && data.getData() != null) {
-//                            uris = new Uri[]{data.getData()};
-//                        }
-//                    }
-//                    filePathProcess.onReceiveValue(uris);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            });
-
-
     @SuppressLint("SetJavaScriptEnabled")
     private void setWebSettings(WebView webView) {
         WebSettings settings = webView.getSettings();
@@ -141,19 +120,6 @@ public class B_WebActivity extends AppCompatActivity {
             @Override
             public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
                 WebView newWebView = new WebView(view.getContext());
-//                WebSettings settings = newWebView.getSettings();
-//                settings.setJavaScriptEnabled(true);
-//                settings.setDomStorageEnabled(true);
-//                settings.setUseWideViewPort(true);
-//                settings.setLoadWithOverviewMode(true);
-//                settings.setDatabaseEnabled(true);
-//                // settings.setAppCacheEnabled(true);
-//                settings.setAllowFileAccess(true);
-//                settings.setSupportMultipleWindows(true);
-//                settings.setJavaScriptCanOpenWindowsAutomatically(true);
-//                /// newWebView.addJavascriptInterface(webAppInterfaceAndroidJs, "android");
-
-                ////WebViewReplaceUA.replaceUA(newWebView);
                 setWebSettings(newWebView);
 
                 newWebView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
