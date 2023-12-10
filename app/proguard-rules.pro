@@ -24,6 +24,21 @@
 -dontpreverify
 
 
+# 指定一个文本文件，其中所有有效字词都用作混淆字段和方法名称。
+# 默认情况下，诸如“a”，“b”等短名称用作混淆名称。
+# 使用模糊字典，您可以指定保留关键字的列表，或具有外来字符的标识符，
+# 例如： 忽略空格，标点符号，重复字和＃符号后的注释。
+# 注意，模糊字典几乎不改善混淆。 有些编译器可以自动替换它们，并且通过使用更简单的名称再次混淆，可以很简单地撤消该效果。
+# 最有用的是指定类文件中通常已经存在的字符串（例如'Code'），从而减少类文件的大小。 仅适用于混淆处理。
+#-obfuscationdictionary       ./a.txt
+#
+## 指定一个文本文件，其中所有有效词都用作混淆类名。 与-obfuscationdictionary类似。 仅适用于混淆处理。
+#-classobfuscationdictionary    ./b.txt
+#
+## 指定一个文本文件，其中所有有效词都用作混淆包名称。与-obfuscationdictionary类似。 仅适用于混淆处理。
+#-packageobfuscationdictionary     ./c.txt
+
+
 
 
 
@@ -207,3 +222,30 @@
 #adjust
 -keep class com.adjust.sdk.**{ *; }
 -keep public class com.android.installreferrer.** { *; }
+
+# Fastjson 混淆规则 如果有警告也不终止
+-dontwarn com.alibaba.fastjson.**
+-dontwarn com.alibaba.fastjson2.**
+-keep class com.alibaba.fastjson.** { *; }
+-keep class com.alibaba.fastjson2.** { *; }
+-keepattributes Signature
+-keepattributes Annotation
+-keepattributes InnerClasses
+
+##---------------Begin: proguard configuration for Gson  ----------
+# Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+#-keep class com.google.gson.stream.** { *; }
+-keepclassmembers enum * { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+##---------------End: proguard configuration for Gson  ----------
+#这句非常重要，主要是滤掉使用gson的bean文件不进行混淆编译，具体根据不同的包名进行调整
+-keep class com.xxxxx.xxxxx.bean.** {*;}
