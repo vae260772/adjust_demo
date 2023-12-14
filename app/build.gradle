@@ -17,7 +17,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.uvfckjoj.brzvoelz28"
+        applicationId "com.debug.beeproject7"
         minSdk 26
         targetSdk 33
         versionCode 1

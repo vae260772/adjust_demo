@@ -1,21 +1,59 @@
 {
   "project_info": {
-    "project_number": "959143218452",
-    "project_id": "comuvfckjojbrzvoelz28",
-    "storage_bucket": "comuvfckjojbrzvoelz28.appspot.com"
+    "project_number": "704441697774",
+    "project_id": "comabcdkpuuhdjncluk2",
+    "storage_bucket": "comabcdkpuuhdjncluk2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:959143218452:android:0e904ea591a6c076e8c601",
+        "mobilesdk_app_id": "1:704441697774:android:48202e35a7ab271d35faff",
         "android_client_info": {
-          "package_name": "com.uvfckjoj.brzvoelz28"
+          "package_name": "com.abcdk.puuhdjncluk"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD1BpLXp8tofvehiZwsh0Bconppw4i1HoA"
+          "current_key": "AIzaSyC5Xn6FIparptd8tfVtMz3YDLypFyqwbHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704441697774:android:0718cebabdd2967035faff",
+        "android_client_info": {
+          "package_name": "com.debug.beeproject7"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5Xn6FIparptd8tfVtMz3YDLypFyqwbHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704441697774:android:b639428db4cc4ccc35faff",
+        "android_client_info": {
+          "package_name": "com.ferrari.toycar.game"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5Xn6FIparptd8tfVtMz3YDLypFyqwbHw"
         }
       ],
       "services": {

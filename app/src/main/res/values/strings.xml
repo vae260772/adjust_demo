@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Chinese Compass</string>
+    <string name="app_name">com.debug.beeproject7</string>
 
     <string name="getting_location">Getting location...</string>
     <string name="cannot_get_location">Cannot get your location</string>
